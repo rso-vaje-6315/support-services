@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-deployment
+  namespace: e-store
+spec:
+  selector:
+    matchLabels:
+      app: zookeeper-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zookeeper-deployment
+    spec:
+      containers:
+        - name: zookeeper-container
+          image: wurstmeister/zookeeper
+          ports:
+            - containerPort: 2181
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zookeeper
+  name: zookeeper
+  namespace: e-store
+spec:
+  type: ClusterIP
+  ports:
+    - port: 2181
+      protocol: TCP
+      targetPort: 2181
+  selector:
+    app: zookeeper-deployment

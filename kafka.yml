@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-deployment
+  namespace: e-store
+spec:
+  selector:
+    matchLabels:
+      app: kafka-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-deployment
+    spec:
+      containers:
+        - name: kafka-container
+          image: wurstmeister/kafka
+          ports:
+            - containerPort: 9092
+          env:
+            - name: KAFKA_ADVERTISED_HOST_NAME
+              value: localhost
+            - name: KAFKA_ZOOKEEPER_CONNECT
+              value: zookeeper.e-store:2181
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kafka-service
+  name: kafka-service
+  namespace: e-store
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9092
+      protocol: TCP
+      targetPort: 9092
+  selector:
+    app: kafka-deployment
