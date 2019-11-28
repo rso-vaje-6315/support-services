@@ -20,7 +20,7 @@ spec:
             - containerPort: 9092
           env:
             - name: KAFKA_ADVERTISED_HOST_NAME
-              value: localhost
+              value: kafka-service.e-store
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: zookeeper.e-store:2181
       restartPolicy: Always
