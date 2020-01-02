@@ -18,3 +18,31 @@ spec:
             backend:
               serviceName: customers-service
               servicePort: 8080
+          - path: /products-service(/|$)(.*)
+            backend:
+              serviceName: products-service
+              servicePort: 8080
+          - path: /analytics-service(/|$)(.*)
+            backend:
+              serviceName: analytics-service
+              servicePort: 8080
+          - path: /orders-service(/|$)(.*)
+            backend:
+              serviceName: orders-service
+              servicePort: 8080
+          - path: /stock-service(/|$)(.*)
+            backend:
+              serviceName: stock-service
+              servicePort: 8080
+          - path: /invoice-service(/|$)(.*)
+            backend:
+              serviceName: invoice-service
+              servicePort: 8080
+          - path: /notification-service(/|$)(.*)
+            backend:
+              serviceName: notification-service
+              servicePort: 8080
+          - path: /shopping-cart-service(/|$)(.*)
+            backend:
+              serviceName: shopping-cart-service
+              servicePort: 8080
