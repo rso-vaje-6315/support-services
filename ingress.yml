@@ -46,3 +46,7 @@ spec:
             backend:
               serviceName: shopping-cart-service
               servicePort: 8080
+          - path: /ui(/|$)(.*)
+            backend:
+              serviceName: web-client
+              servicePort: 80
